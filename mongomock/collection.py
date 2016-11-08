@@ -300,10 +300,10 @@ class Collection(object):
                     if find_kwargs[key] == None:
                         del find_kwargs[key]
 
-            if find_kwargs != {}:
+            if not find_kwargs:
                 answer = self.find(find_kwargs)
                 if answer.count() > 0:
-                    raise DuplicateKeyError("Duplicate Key Error", 11000)
+                    raise DuplicateKeyError('Duplicate Key Error', 11000)
         with lock:
             self._documents[object_id] = self._internalize_dict(data)
         return data['_id']
